@@ -35,8 +35,7 @@ app.get('/card/', (req, res, next) =>
         }   
         
     }
-    //queryString = 'n=' + filters['query'] + '&card=' + filters['name'];
-    console.log(queryString);
+    //console.log(queryString);
 
     fetch('https://digimoncard.io/api-public/search.php?' + queryString, options)
     .then(response => response.json())
