@@ -16,7 +16,27 @@ app.get('/card/', (req, res, next) =>
             'Content-Type': 'application/json'
         },
     };
-    let queryString = 'n=' + filters['query'];
+    let queryString = '';
+    for(let key in filters)
+    {
+        if(queryString.length <1 )
+        {
+            if(key === 'query')
+            {
+                queryString = 'n=' + filters['query'];
+            }
+            else
+            {
+                queryString = key + '=' + filters[key]
+            }
+        }
+        else{
+            queryString = queryString + '&'+key+'='+filters[key];
+        }   
+        
+    }
+    //queryString = 'n=' + filters['query'] + '&card=' + filters['name'];
+    console.log(queryString);
 
     fetch('https://digimoncard.io/api-public/search.php?' + queryString, options)
     .then(response => response.json())
