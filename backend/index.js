@@ -6,10 +6,10 @@ app.listen(
     PORT,
     () => console.log("it's alive!")
 )
-app.get('/card/', (req, res, next) =>
+app.get('/card/', (req, res) =>
 {
 
-    const filters = req.query;
+    const filters = req.query; //assigns the filters verb with the query params.
     const options = {
         method: 'POST',
         headers: {
@@ -17,6 +17,15 @@ app.get('/card/', (req, res, next) =>
         },
     };
     let queryString = '';
+    console.log(filters);
+
+    if(Object.keys(filters).length === 0)
+    {
+        res.status(420).send({message: "Sorry! Can't search without query parameters!"})
+        return;
+    }
+
+    //Build query string from what was entered.
     for(let key in filters)
     {
         if(queryString.length <1 )
@@ -39,7 +48,7 @@ app.get('/card/', (req, res, next) =>
 
     fetch('https://digimoncard.io/api-public/search.php?' + queryString, options)
     .then(response => response.json())
-    .then(response => res.send(response))
+    .then(response => res.status(200).send(response))
     .catch(err => console.error(err));
     //console.log(filters['query']);
     //https://digimoncard.io/api-public/search.php?n=Agumon&sort=name&sortdirection=desc
