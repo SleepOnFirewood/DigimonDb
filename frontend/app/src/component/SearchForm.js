@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import './SearchForm.css';
 
 function SearchForm(props)
 {
@@ -38,7 +39,7 @@ function SearchForm(props)
         <div>
             <form>
                 <div>
-                    <div>
+                    <div className='form-control'>
                         <label>Name</label>
                         <input type="text" value={enteredName} onChange={nameChangeHandler}></input>
                         <label>Colour</label>
