@@ -8,7 +8,8 @@ app.listen(
 )
 app.get('/card/', (req, res) =>
 {
-
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const filters = req.query; //assigns the filters verb with the query params.
     const options = {
         method: 'POST',
@@ -49,6 +50,7 @@ app.get('/card/', (req, res) =>
     fetch('https://digimoncard.io/api-public/search.php?' + queryString, options)
     .then(response => response.json())
     .then(response => res.status(200).send(response))
+    .then(response => console.log(response))
     .catch(err => console.error(err));
     //console.log(filters['query']);
     //https://digimoncard.io/api-public/search.php?n=Agumon&sort=name&sortdirection=desc
