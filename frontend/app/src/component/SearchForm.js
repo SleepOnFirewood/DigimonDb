@@ -29,7 +29,7 @@ function SearchForm(props)
         }
 
         console.log(searchData);
-        setEnteredColour('')
+        setEnteredColour("")
         setEnteredName("");
     }
 
