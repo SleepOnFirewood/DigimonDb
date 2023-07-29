@@ -25,13 +25,20 @@ function SearchForm(props)
         event.preventDefault();
 
         const searchData = {
-            n: enteredName,
-            colour: enteredColour,
+            'n': enteredName,
+            'colour': enteredColour,
         }
 
         console.log(searchData);
         setEnteredColour("")
         setEnteredName("");
+        async function submitNow()
+        {
+        await fetch('http://cors-anywhere.localhost:8181/card?query='+ searchData['n'])
+            .then(res=> res.json())
+            .then(res => console.log(res));
+        }
+        submitNow();
     }
 
 
