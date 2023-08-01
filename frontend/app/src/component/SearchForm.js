@@ -36,7 +36,8 @@ function SearchForm(props)
         {
         await fetch('http://cors-anywhere.localhost:8181/card?query='+ searchData['n'])
             .then(res=> res.json())
-            .then(res => console.log(res));
+            //.then(res => console.log(res));
+            .then(res=> props.onSearch(res[0]['image_url']));
         }
         submitNow();
     }
