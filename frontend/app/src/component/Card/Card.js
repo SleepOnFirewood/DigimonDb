@@ -6,7 +6,7 @@ function Card(props)
 {
     return(
     <div className='card-control'>
-        <img src={props.digiPic} alt=""></img>
+        <img src={props.digiPic} alt="digi"></img>
     </div>
 )}
 

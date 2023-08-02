@@ -5,7 +5,7 @@ import SearchForm from './component/SearchForm';
 import Card from './component/Card/Card';
 
 function App() {
-  const [theDigiData, setDigiData] = useState('dragon');
+  const [theDigiData, setDigiData] = useState([]);
 
   const onSearchHandler = (searchData) => {
     const searchResults = searchData;
@@ -24,7 +24,11 @@ function App() {
       <section id="search-border">
       <SearchForm onSearch ={onSearchHandler}></SearchForm>
       </section>
-      <Card digiPic = {theDigiData}></Card>
+      <div className="cardDisplay">
+        {theDigiData.map(item =>(
+      <Card digiPic = {item['image_url']}></Card>
+      ))}
+      </div>
     </div>
   );
 }
